@@ -4,6 +4,7 @@
   "description": "learn rxjs",
   "main": "index.js",
   "scripts": {
+    "dev": "parcel index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/ShaunZh/learn-rxjs/issues"
   },
-  "homepage": "https://github.com/ShaunZh/learn-rxjs#readme"
+  "homepage": "https://github.com/ShaunZh/learn-rxjs#readme",
+  "dependencies": {
+    "rxjs": "^6.5.4"
+  },
+  "devDependencies": {}
 }
