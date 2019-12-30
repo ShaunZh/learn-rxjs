@@ -23,9 +23,11 @@ const app = observableAdd.pipe(
   map(() => $input.value), // 获取输入的值
   filter(r => r !== ""), // 过滤空值
   map(createTodoItem), // 使用输入的值生成一个结点
+  // tap: tap主要用于数据流存在副作用的操作
   tap(el => {
-    // 将结点添加到list中，注意：tap主要用于数据流存在副作用的操作
+    // 将结点添加到list中，注意：
     $list.appendChild(el);
+    $input.value = "";
   })
 );
 
