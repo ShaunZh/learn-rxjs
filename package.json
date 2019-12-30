@@ -1,0 +1,22 @@
+{
+  "name": "learn-rxjs",
+  "version": "1.0.0",
+  "description": "learn rxjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/ShaunZh/learn-rxjs.git"
+  },
+  "keywords": [
+    "rxjs"
+  ],
+  "author": "hexon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ShaunZh/learn-rxjs/issues"
+  },
+  "homepage": "https://github.com/ShaunZh/learn-rxjs#readme"
+}
