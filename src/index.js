@@ -1,5 +1,5 @@
-import { fromEvent, of } from "rxjs";
-import { map, filter, tap, merge } from "rxjs/operators";
+import { fromEvent, of, merge } from "rxjs";
+import { map, filter, tap, mergeMap, mapTo } from "rxjs/operators";
 import { createTodoItem } from "./lib";
 
 const $input = document.querySelector(".todo-val");
@@ -15,7 +15,8 @@ const observableEnter = fromEvent($input, "keydown").pipe(
 );
 
 // merge： 合并两个Observable(https://github.com/btroncone/learn-rxjs/blob/master/operators/combination/merge.md)
-const observableAdd = observableEnter.pipe(merge(observableBtn));
+// merge有两种引入方式：一、从rxjs中引入-表示作为静态方法使用；二、从rxjs/operators中引入-表示作为实例方法使用；具体可查看文档使用方法
+const observableAdd = merge(observableEnter, observableBtn);
 console.log(observableAdd);
 
 // app 也是一个Observable
@@ -28,6 +29,22 @@ const app = observableAdd.pipe(
     // 将结点添加到list中，注意：
     $list.appendChild(el);
     $input.value = "";
+  }),
+  // 遍历每个新添加的todo标签，
+  // 并为其添加click事件，然后通过mapTo将传入的todo原样输出
+  mergeMap(el => {
+    return fromEvent(el, "click").pipe(
+      // 表示只有点击todo文字，才处理点击操作
+      filter(e => e.target === el),
+      mapTo(el)
+    );
+  }),
+  tap(el => {
+    if (el.classList.contains("done")) {
+      el.classList.remove("done");
+    } else {
+      el.classList.add("done");
+    }
   })
 );
 
